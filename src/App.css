@@ -1,0 +1,14 @@
+*{
+  margin: 0;
+}
+
+.App {
+  background-color: white;
+}
+
+.app__headerImage{
+  padding: 20px;
+  object-fit: contain;
+  max-width: 150px;
+  max-height: 40px;
+}

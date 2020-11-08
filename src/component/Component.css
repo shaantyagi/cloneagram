@@ -1,0 +1,26 @@
+.posts__div{
+margin: 20px;
+border: 1px solid lightgray;
+object-fit: contain;
+max-width: 500px;
+}
+
+.posts__head{
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.posts__avatar{
+    margin-right: 20px;
+}
+
+.posts__image{
+    width: 100%;
+    object-fit: contain;
+}
+
+.posts__caption{
+    padding: 20px;
+    font-weight: normal;
+}
