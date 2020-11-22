@@ -1,8 +1,8 @@
 .posts__div{
-margin: 20px;
-border: 1px solid lightgray;
-object-fit: contain;
-max-width: 500px;
+    margin: 20px;
+    border: 1px solid lightgray;
+    object-fit: contain;
+    max-width: 500px;
 }
 
 .posts__head{
@@ -18,9 +18,21 @@ max-width: 500px;
 .posts__image{
     width: 100%;
     object-fit: contain;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
 }
 
 .posts__caption{
     padding: 20px;
     font-weight: normal;
+}
+
+.uploader__container{
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 50%;
 }

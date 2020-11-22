@@ -6,9 +6,21 @@
   background-color: white;
 }
 
+.app__imageContainer{
+  border-bottom: 1px solid darkgrey;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .app__headerImage{
   padding: 20px;
   object-fit: contain;
   max-width: 150px;
   max-height: 40px;
+}
+
+.app__form{
+  display: flex;
+  flex-direction: column;
 }
