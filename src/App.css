@@ -3,24 +3,39 @@
 }
 
 .App {
-  background-color: white;
+  background-color: #FAFAFA;
 }
 
 .app__imageContainer{
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: white;
+  padding: 20px;
   border-bottom: 1px solid darkgrey;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  object-fit: contain;
 }
 
 .app__headerImage{
-  padding: 20px;
   object-fit: contain;
-  max-width: 150px;
-  max-height: 40px;
 }
 
 .app__form{
   display: flex;
   flex-direction: column;
+}
+
+.app__logoutContainer{
+  display: flex;
+  align-items: center;
+}
+
+.app__avatar{
+  margin-left: 10px;
+}
+
+.app__post{
+  display: flex;
 }

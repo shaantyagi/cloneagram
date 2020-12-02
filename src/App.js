@@ -2,8 +2,9 @@ import './App.css';
 import Posts from './component/Posts';
 import Uploader from './component/Uploader';
 import React, { useEffect, useState } from 'react';
-import { db, auth } from './database/firebase';
-import { Button, Input, makeStyles, Modal } from '@material-ui/core';
+import { db, auth, storage } from './database/firebase';
+import { Avatar, Button, IconButton, Input, makeStyles, Modal } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 function getModalStyle() {
   const top = 50;
@@ -82,9 +83,15 @@ function App() {
     setopenSignin(false);
   }
 
+  const handleDelete = (id, data) =>{
+    db.collection('posts').doc(id).get().then((doc) => {
+      doc.ref.delete();
+    }).catch((error) => console.log(error.message));
+    storage.refFromURL(data).delete().catch((error) => console.log(error.message));
+  }
+
   return (
     <div className="App">
-      <div>
         <div className="app__imageContainer">
           <img
             className="app__headerImage"
@@ -93,7 +100,10 @@ function App() {
           />
           <div className="app__sign">
             {user ? 
-            (<Button type="button" onClick={() => auth.signOut()}>Log Out</Button>) : 
+            (<div className="app__logoutContainer">
+              <Button type="button" onClick={() => auth.signOut()}>Log Out</Button>
+              <Avatar className="app__avatar" src={user.displayName} alt={user.displayName}/>
+            </div>) : 
             (<div>
                 <Button onClick={() => setopenSignin(true)}>Sign In</Button>
                 <Button onClick={() => setopenSignup(true)}>Sign Up</Button>
@@ -101,10 +111,7 @@ function App() {
             )}
           </div>
         </div>
-        <Modal
-            open={openSignin}
-            onClose={() => setopenSignin(false)}
-          >
+        <Modal open={openSignin} onClose={() => setopenSignin(false)}>
             <div style={modalStyle} className={classes.paper}>
               <form className="app__form" onSubmit={signin}>
                 <center>
@@ -152,15 +159,23 @@ function App() {
               </form>
             </div>
         </Modal>
-        {posts.map(({ id, post }) => (
-          <Posts key={id} username={post.userName} image={post.image} caption={post.caption} />
-        ))}
-      </div>
-      {user?.displayName ? 
-        (<Uploader userName={user.displayName}/>) : 
-        (<center>
-          <h2>Login to Upload</h2>
+          {posts.map(({ id, post }) => (
+            <div key={id} className="app__post">
+              <Posts key={id} postId={id} signedUser={user} username={post.userName} data={post.data} caption={post.caption} isImage={post.isImage}/>
+              {post.userName===user?.displayName && (
+                  <IconButton aria-label="delete" color="primary" onClick={() => handleDelete(id, post.data)}>
+                    <DeleteIcon />
+                  </IconButton>
+              )}
+            </div>
+          ))}
+        <div className="app__uploadBox">
+          {user?.displayName ? 
+          (<Uploader userName={user.displayName}/>) : 
+          (<center>
+            <h2 style={{marginBottom:20}}>Login to Upload</h2>
           </center>)}
+        </div>  
     </div>
   );
 }

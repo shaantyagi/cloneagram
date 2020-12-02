@@ -22,9 +22,20 @@
     border-bottom: 1px solid lightgray;
 }
 
+.posts__captionContainer{
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
 .posts__caption{
-    padding: 20px;
+    margin-left: 10px;
     font-weight: normal;
+}
+
+.posts__commentBox{
+    padding: 20px;
 }
 
 .uploader__container{
@@ -35,4 +46,26 @@
     margin-top: 20px;
     margin-bottom: 20px;
     width: 50%;
+}
+
+.posts__comment{
+    display: flex;
+    align-items: center;
+}
+
+.posts__commentContainer{
+    display: flex;
+    border-top: 1px solid lightgray;
+}
+
+.posts__commentInput{
+    flex: 1;
+    border: none;
+    padding:10px;
+}
+
+.posts__commentButton{
+    flex: 0;
+    margin-left: 10px;
+    color: #6082a3;
 }
